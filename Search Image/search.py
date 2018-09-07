@@ -19,20 +19,17 @@ for i in img_name_list:
 img_search = cv2.imread("Image/img.png")
 
 cv2.imshow("Hihi",img_search)
-cv2.waitKey(0)
 gray = cv2.cvtColor(img_search,cv2.COLOR_BGR2GRAY)
 sift = cv2.xfeatures2d.SIFT_create()
 kp1,des1 = sift.detectAndCompute(gray,None)
 newImg = img_search.copy()
-# cv2.drawKeypoints(img_search,kp1,newImg)
-# cv2.imshow("Keypoints",newImg)
 
 match_list = []
+bf = cv2.BFMatcher_create()
 
 for img in img_list:
     img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     kp2,des2 = sift.detectAndCompute(img_gray,None)
-    bf = cv2.BFMatcher_create()
     matches = bf.knnMatch(des1,des2,k = 2)
     good = []
     for m,n in matches:
