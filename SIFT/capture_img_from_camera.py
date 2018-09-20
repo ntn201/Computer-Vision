@@ -1,9 +1,6 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("Image/DP7_EN_3.png")
-cv2.imshow("Original",img)
-
 cap = cv2.VideoCapture(0)
 
 while True:

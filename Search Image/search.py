@@ -8,6 +8,7 @@ def load_image():
     res = img1 + img2
     return res
 
+print(cv2.useOptimized())
 img_name_list = load_image()
 
 img_list = []
@@ -16,14 +17,13 @@ for i in img_name_list:
     img = cv2.imread(i)
     img_list.append(img)
 
+#img_list = np.array(img_list)
 img_search = cv2.imread("Image/img.png")
 
 cv2.imshow("Hihi",img_search)
 gray = cv2.cvtColor(img_search,cv2.COLOR_BGR2GRAY)
 sift = cv2.xfeatures2d.SIFT_create()
 kp1,des1 = sift.detectAndCompute(gray,None)
-newImg = img_search.copy()
-
 match_list = []
 bf = cv2.BFMatcher_create()
 
